@@ -124,7 +124,7 @@ describe("MCP context helpers", () => {
     });
     expect(
       await resolveSaveAs({ ...deps, allowAnyOutputPath: true }, { save_as: "/tmp/abs.csv" }),
-    ).toEqual({ path: resolve("/tmp/abs.csv"), overwrite: false });
+    ).toEqual({ path: resolve(made.outputDir, "/tmp/abs.csv"), overwrite: false });
     for (const save_as of ["/tmp/abs.csv", "../../x.csv", "sub/../../x.csv"]) {
       await expect(resolveSaveAs(deps, { save_as })).rejects.toThrow(
         /outside the output directory/,
