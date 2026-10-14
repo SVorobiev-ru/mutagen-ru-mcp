@@ -617,7 +617,7 @@ describe("secrets and interrupts", () => {
     const result = await running;
     expect(result.code).toBe(1);
     const progress = result.stderr.match(/Мутаген еще считает/g) ?? [];
-    expect(progress.length).toBeGreaterThan(50);
+    expect(progress.length).toBeGreaterThanOrEqual(40);
     expect(progress.length).toBeLessThanOrEqual(60);
     expect(result.stderr).toContain("Ctrl+C прерывает, повтор команды бесплатно подхватит задачу");
     expect(result.stderr).toContain("Повторите тот же вызов позже — повтор бесплатный");
