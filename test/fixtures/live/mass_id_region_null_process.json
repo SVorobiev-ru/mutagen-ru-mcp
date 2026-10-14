@@ -1,0 +1,10 @@
+{
+  "method": "mutagen.parser.mass.id",
+  "params": {
+    "mass_id": 465382
+  },
+  "status": 200,
+  "contentType": "application/json",
+  "body": "{\"name\":\"mutagen-ru-mcp e5fcfa2089276c5e\",\"time\":\"1791978058\",\"parser\":\"wordstat_n\",\"region_id\":null,\"count\":\"218\",\"status\":\"process\"}",
+  "note": "Живой ответ 14.10.2026: задание без региона хранится с region_id null; пока status process, поля data нет"
+}

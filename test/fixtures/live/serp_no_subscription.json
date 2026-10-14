@@ -1,0 +1,12 @@
+{
+  "method": "mutagen.serp.report",
+  "params": {
+    "region": "yandex_msk",
+    "keyword": "купить окна",
+    "report": "report_keyword_info",
+    "count": 1
+  },
+  "status": 200,
+  "contentType": "application/json",
+  "body": "{\"error_id\":111,\"error\":\"Для работы по api требуется подписка на любой из тарифов\"}"
+}

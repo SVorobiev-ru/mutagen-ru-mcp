@@ -1,0 +1,12 @@
+{
+  "mcpServers": {
+    "mutagen": {
+      "command": "npx",
+      "args": ["-y", "mutagen-ru-mcp"],
+      "env": {
+        "MUTAGEN_API_KEY": "ваш_ключ",
+        "MUTAGEN_BUDGET_RUB": "50"
+      }
+    }
+  }
+}

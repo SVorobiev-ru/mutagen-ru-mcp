@@ -1,0 +1,11 @@
+{
+  "method": "mutagen.parser.get",
+  "params": {
+    "key": "окна пвх",
+    "parser": "wordstat_n",
+    "region_id": "225"
+  },
+  "status": 200,
+  "contentType": "application/json",
+  "body": "{\"status\":\"create\"}"
+}

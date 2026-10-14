@@ -1,0 +1,12 @@
+{
+  "method": "mutagen.parser.mass.new",
+  "params": {
+    "keys_list": ["пластиковые окна", "натяжной потолок цена"],
+    "name": "mutagen-ru-mcp abcdef0123456789",
+    "parser": "wordstat_n",
+    "region_id": "225"
+  },
+  "status": 200,
+  "contentType": "application/json",
+  "body": "{\"status\":\"process\",\"id\":465374}"
+}

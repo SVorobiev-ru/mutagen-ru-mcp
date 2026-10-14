@@ -1,0 +1,83 @@
+{
+  "name": "mutagen-ru-mcp",
+  "mcpName": "io.github.SVorobiev-ru/mutagen-ru-mcp",
+  "version": "0.1.0",
+  "description": "Unofficial MCP server, CLI and Node.js client for the Mutagen (mutagen.ru) SEO API: Wordstat frequencies, keyword competition, semantic core",
+  "type": "module",
+  "license": "MIT",
+  "author": "Sergey Vorobiev",
+  "homepage": "https://github.com/SVorobiev-ru/mutagen-ru-mcp#readme",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/SVorobiev-ru/mutagen-ru-mcp.git"
+  },
+  "bugs": {
+    "url": "https://github.com/SVorobiev-ru/mutagen-ru-mcp/issues"
+  },
+  "keywords": [
+    "mutagen",
+    "mutagen.ru",
+    "seo",
+    "wordstat",
+    "yandex",
+    "yandex-direct",
+    "semantic-core",
+    "keyword-research",
+    "keyword-clustering",
+    "mcp",
+    "mcp-server",
+    "model-context-protocol",
+    "cli"
+  ],
+  "engines": {
+    "node": ">=22.12"
+  },
+  "main": "./dist/index.js",
+  "bin": {
+    "mutagen-ru-mcp": "dist/mcp/bin.js",
+    "mutagen-ru": "dist/cli/bin.js"
+  },
+  "types": "./dist/index.d.ts",
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.js"
+    },
+    "./package.json": "./package.json"
+  },
+  "files": [
+    "dist",
+    "README*.md",
+    "LICENSE"
+  ],
+  "sideEffects": false,
+  "scripts": {
+    "build": "tsc -p tsconfig.build.json",
+    "typecheck": "tsc -p tsconfig.json --noEmit",
+    "lint": "biome check .",
+    "format": "biome format --write .",
+    "test": "vitest run",
+    "test:coverage": "vitest run --coverage",
+    "test:live": "vitest run --config vitest.live.config.ts",
+    "check": "npm run lint && npm run typecheck && npm run test && npm run build",
+    "mcp": "node dist/mcp/bin.js",
+    "cli": "node dist/cli/bin.js",
+    "smoke:mcp": "npx --yes @modelcontextprotocol/inspector@2 --cli node dist/mcp/bin.js --method tools/list",
+    "smoke:cli": "node dist/cli/bin.js --version && node dist/cli/bin.js --help"
+  },
+  "dependencies": {
+    "@modelcontextprotocol/node": "^2.1.1",
+    "@modelcontextprotocol/server": "^2.3.1",
+    "commander": "^15.0.0",
+    "write-excel-file": "^4.1.1",
+    "zod": "^4.6.7"
+  },
+  "devDependencies": {
+    "@biomejs/biome": "^2.5.15",
+    "@modelcontextprotocol/client": "^2.3.1",
+    "@types/node": "^22.20.5",
+    "@vitest/coverage-v8": "^5.0.4",
+    "typescript": "^7.0.2",
+    "vitest": "^5.0.4"
+  }
+}

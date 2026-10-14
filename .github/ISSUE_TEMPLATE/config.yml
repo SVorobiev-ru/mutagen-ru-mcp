@@ -1,0 +1,8 @@
+blank_issues_enabled: false
+contact_links:
+  - name: Уязвимость / Security vulnerability
+    url: https://github.com/SVorobiev-ru/mutagen-ru-mcp/security/advisories/new
+    about: Сообщите приватно, не в открытом issue / Report privately, not in a public issue
+  - name: Вопросы о сервисе Мутаген / Questions about the Mutagen service
+    url: https://mutagen.ru/?p=faq
+    about: Проект неофициальный; тарифы, баланс и работа сервиса — к Мутагену / This project is unofficial; billing and service questions go to Mutagen

@@ -1,0 +1,46 @@
+name: Идея / Feature request
+description: Новый сценарий, инструмент, команда или улучшение / New scenario, tool, command or improvement
+labels: ["enhancement"]
+body:
+  - type: textarea
+    id: problem
+    attributes:
+      label: Задача / Problem
+      description: Что вы хотите сделать и что мешает сейчас / What you want to do and what stops you now
+    validations:
+      required: true
+  - type: textarea
+    id: proposal
+    attributes:
+      label: Предложение / Proposal
+      description: Как это могло бы выглядеть в чате с агентом, в CLI или в коде / How it could look in an agent chat, the CLI or code
+    validations:
+      required: true
+  - type: dropdown
+    id: surface
+    attributes:
+      label: Где / Where
+      multiple: true
+      options:
+        - MCP-сервер / MCP server
+        - CLI mutagen-ru
+        - Библиотека / Library
+        - Примеры / Examples
+        - Документация / Docs
+  - type: dropdown
+    id: subscription
+    attributes:
+      label: Нужна ли подписка Мега-инструмента? / Needs a Mega-tool subscription?
+      options:
+        - Нет, только баланс / No, balance only
+        - Да / Yes
+        - Не знаю / Not sure
+  - type: textarea
+    id: alternatives
+    attributes:
+      label: Как вы решаете это сейчас / Current workaround
+  - type: markdown
+    attributes:
+      value: |
+        Мы работаем только через официальный API Мутагена и локальную обработку. Идеи на основе скрейпинга сайта Мутагена не принимаем.
+        We only use the official Mutagen API and local processing; features based on scraping mutagen.ru are out of scope.

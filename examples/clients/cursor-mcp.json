@@ -1,0 +1,13 @@
+{
+  "mcpServers": {
+    "mutagen": {
+      "type": "stdio",
+      "command": "npx",
+      "args": ["-y", "mutagen-ru-mcp"],
+      "env": {
+        "MUTAGEN_API_KEY": "${env:MUTAGEN_API_KEY}",
+        "MUTAGEN_BUDGET_RUB": "50"
+      }
+    }
+  }
+}

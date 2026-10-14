@@ -1,0 +1,7 @@
+{
+  "method": "mutagen.parser.get",
+  "params": {},
+  "status": 200,
+  "contentType": "application/json",
+  "body": "{\"error_id\":108,\"error\":\"MUTAGEN.RU: options error\",\"error_detail\":\"слишком короткий ключ, минимум 2 знака\"}"
+}

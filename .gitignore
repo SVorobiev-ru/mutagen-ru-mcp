@@ -1,0 +1,24 @@
+node_modules/
+.env
+.env.*
+!.env.example
+dist/
+coverage/
+
+*.tsbuildinfo
+*.tgz
+
+# Рабочие документы проекта — только локально
+docs/
+
+# Файлы и каталоги ИИ-агентов — никогда не в git
+CLAUDE.md
+CLAUDE.local.md
+AGENTS.md
+GEMINI.md
+WORKLOG.md
+.claude/
+.codex/
+.cursor/
+.windsurf/
+.github/copilot-instructions.md

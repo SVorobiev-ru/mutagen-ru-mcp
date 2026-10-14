@@ -1,0 +1,7 @@
+# Добавьте строку через `crontab -e`. Каждый понедельник в 06:00 по времени сервера.
+# cron запускает команды с коротким PATH: если mutagen-ru не находится, укажите полный путь
+# к node и CLI (узнать: `command -v node mutagen-ru`) или задайте PATH в первой строке crontab.
+
+PATH=/usr/local/bin:/usr/bin:/bin
+
+0 6 * * 1  /path/to/examples/cron/weekly-core.sh >> /var/log/mutagen-core.log 2>&1

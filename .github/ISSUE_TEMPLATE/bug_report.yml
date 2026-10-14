@@ -1,0 +1,73 @@
+name: Ошибка / Bug report
+description: Что-то работает не так / Something does not work as expected
+labels: ["bug"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        **Не вставляйте ключ API.** Ключ Мутагена стоит в адресе запроса и легко попадает в логи: проверьте вывод перед отправкой, наш код заменяет ключ на `***`.
+        **Do not paste your API key.** Check logs before posting; the key should appear as `***`.
+
+        Уязвимости — не сюда, а по [SECURITY.md](https://github.com/SVorobiev-ru/mutagen-ru-mcp/blob/main/SECURITY.md). Report vulnerabilities privately as described in SECURITY.md.
+  - type: dropdown
+    id: surface
+    attributes:
+      label: Где / Where
+      options:
+        - MCP-сервер / MCP server
+        - CLI mutagen-ru
+        - Библиотека / Library
+        - Примеры / Examples
+        - Документация / Docs
+    validations:
+      required: true
+  - type: input
+    id: tool
+    attributes:
+      label: Инструмент MCP или команда CLI / MCP tool or CLI command
+      placeholder: mutagen_frequency / mutagen-ru freq -t n,qs
+  - type: textarea
+    id: what-happened
+    attributes:
+      label: Что произошло / What happened
+      description: Команда или запрос к агенту, вывод, текст ошибки (без ключа) / Command or prompt, output, error text (no key)
+      render: text
+    validations:
+      required: true
+  - type: textarea
+    id: expected
+    attributes:
+      label: Что ожидалось / Expected behavior
+    validations:
+      required: true
+  - type: dropdown
+    id: money
+    attributes:
+      label: Связано с деньгами? / Money involved?
+      description: Списание больше сметы, двойная оплата, обход бюджета / Charged above the estimate, double charge, budget bypass
+      options:
+        - Нет / No
+        - Да / Yes
+    validations:
+      required: true
+  - type: input
+    id: version
+    attributes:
+      label: Версия mutagen-ru-mcp / Version
+      description: "`mutagen-ru --version`"
+    validations:
+      required: true
+  - type: input
+    id: environment
+    attributes:
+      label: Окружение / Environment
+      placeholder: "Node 22.12, macOS 15, Claude Code 2.x"
+    validations:
+      required: true
+  - type: checkboxes
+    id: checks
+    attributes:
+      label: Проверки / Checks
+      options:
+        - label: В issue нет ключа API и личных данных аккаунта / No API key or personal account data in this issue
+          required: true

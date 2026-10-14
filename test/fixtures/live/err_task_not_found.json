@@ -1,0 +1,9 @@
+{
+  "method": "mutagen.check_key.get",
+  "params": {
+    "task_id": 1
+  },
+  "status": 200,
+  "contentType": "application/json",
+  "body": "{\"error_id\":107,\"error\":\"MUTAGEN.RU: task_id not found\"}"
+}

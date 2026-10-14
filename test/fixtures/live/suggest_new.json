@@ -1,0 +1,9 @@
+{
+  "method": "mutagen.suggest.new",
+  "params": {
+    "key": "натяжной потолок цена"
+  },
+  "status": 200,
+  "contentType": "application/json",
+  "body": "{\"task_id\":16209409,\"status\":\"created\"}"
+}

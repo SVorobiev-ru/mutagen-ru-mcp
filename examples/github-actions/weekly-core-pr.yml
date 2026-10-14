@@ -1,0 +1,88 @@
+# Раз в неделю пересобирает семантическое ядро и открывает pull request с новыми фразами.
+#
+# 1. Скопируйте файл в .github/workflows/ своего репозитория.
+# 2. Добавьте секрет MUTAGEN_API_KEY (Settings → Secrets and variables → Actions).
+# 3. Разрешите Actions создавать PR: Settings → Actions → General → Workflow permissions →
+#    «Allow GitHub Actions to create and approve pull requests».
+#
+# Ядро лежит в semantic/core.csv. Первый запуск создаст его целиком, следующие покажут в PR
+# только изменения, а новые фразы — отдельным списком в semantic/new-phrases.txt.
+
+name: Weekly semantic core PR
+
+on:
+  schedule:
+    - cron: "0 5 * * 1" # понедельник, 05:00 UTC
+  workflow_dispatch:
+
+permissions:
+  contents: write
+  pull-requests: write
+
+concurrency:
+  group: weekly-semantic-core
+  cancel-in-progress: false
+
+jobs:
+  core:
+    runs-on: ubuntu-latest
+    timeout-minutes: 45
+    env:
+      MUTAGEN_API_KEY: ${{ secrets.MUTAGEN_API_KEY }}
+      MUTAGEN_BUDGET_RUB: "20" # жесткий предел трат за запуск
+      SEEDS: "натяжные потолки|потолки под ключ"
+    steps:
+      - uses: actions/checkout@v7
+
+      - uses: actions/setup-node@v7
+        with:
+          node-version: 24
+
+      - run: npm install --global mutagen-ru-mcp
+
+      - name: Build the core
+        run: |
+          mkdir -p semantic
+          IFS='|' read -r -a seeds <<< "$SEEDS"
+          mutagen-ru core "${seeds[@]}" --budget "$MUTAGEN_BUDGET_RUB" --yes -q \
+            -o semantic/core.new.csv
+
+      - name: Find new phrases
+        run: |
+          first=0
+          if [ ! -f semantic/core.csv ]; then
+            first=1
+            cp semantic/core.new.csv semantic/core.csv
+          fi
+          # Бесплатно и локально: сравнение двух списков без обращения к API.
+          mutagen-ru text compare -i semantic/core.csv -i semantic/core.new.csv \
+            --format json -q > compare.json
+          FIRST="$first" node -e '
+            const fs = require("node:fs");
+            const first = process.env.FIRST === "1";
+            const { rows } = JSON.parse(fs.readFileSync("compare.json", "utf8"));
+            const pick = (list) => rows.filter((row) => row.list === list).map((row) => row.phrase);
+            const added = first ? pick("both") : pick("only_b");
+            const removed = pick("only_a");
+            fs.writeFileSync("semantic/new-phrases.txt", added.map((phrase) => `${phrase}\n`).join(""));
+            const body = [
+              `Новых фраз: ${added.length}, пропало: ${removed.length}.`,
+              "",
+              ...added.slice(0, 50).map((phrase) => `- ${phrase}`),
+              added.length > 50 ? `- … еще ${added.length - 50}, полный список в semantic/new-phrases.txt` : "",
+              "",
+              "Данные: Мутаген (mutagen.ru)",
+            ].join("\n");
+            fs.writeFileSync("pr-body.md", body);
+          '
+          mv semantic/core.new.csv semantic/core.csv
+          rm compare.json
+
+      - uses: peter-evans/create-pull-request@v8
+        with:
+          branch: semantic/weekly-core
+          delete-branch: true
+          add-paths: semantic/
+          commit-message: "chore(semantic): weekly core update"
+          title: "Семантическое ядро: обновление за неделю"
+          body-path: pr-body.md

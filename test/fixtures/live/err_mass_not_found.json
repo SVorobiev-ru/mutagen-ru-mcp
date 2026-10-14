@@ -1,0 +1,9 @@
+{
+  "method": "mutagen.parser.mass.id",
+  "params": {
+    "mass_id": 999999999
+  },
+  "status": 200,
+  "contentType": "application/json",
+  "body": "{\"error_id\":107,\"error\":\"MUTAGEN.RU: task_id not found\"}"
+}

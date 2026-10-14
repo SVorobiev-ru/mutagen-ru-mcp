@@ -1,0 +1,8 @@
+{
+  "method": "mutagen.balance",
+  "params": null,
+  "status": 200,
+  "contentType": "application/json",
+  "body": "{\"balance\":100.59999999999999}",
+  "note": "Значение заменено; формат (float с хвостом) сохранен как в живом ответе"
+}

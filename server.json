@@ -1,0 +1,56 @@
+{
+  "$schema": "https://static.modelcontextprotocol.io/schemas/2025-12-11/server.schema.json",
+  "name": "io.github.SVorobiev-ru/mutagen-ru-mcp",
+  "title": "Mutagen (mutagen.ru), unofficial",
+  "description": "Unofficial MCP server for the Mutagen SEO API: Wordstat frequencies, competition, semantic core",
+  "repository": {
+    "url": "https://github.com/SVorobiev-ru/mutagen-ru-mcp",
+    "source": "github"
+  },
+  "websiteUrl": "https://github.com/SVorobiev-ru/mutagen-ru-mcp#readme",
+  "version": "0.1.0",
+  "packages": [
+    {
+      "registryType": "npm",
+      "registryBaseUrl": "https://registry.npmjs.org",
+      "identifier": "mutagen-ru-mcp",
+      "version": "0.1.0",
+      "runtimeHint": "npx",
+      "transport": {
+        "type": "stdio"
+      },
+      "environmentVariables": [
+        {
+          "name": "MUTAGEN_API_KEY",
+          "description": "Mutagen API key from https://mutagen.ru/?api_config",
+          "isRequired": true,
+          "isSecret": true,
+          "format": "string"
+        },
+        {
+          "name": "MUTAGEN_BUDGET_RUB",
+          "description": "Spending limit per session, RUB",
+          "default": "50",
+          "format": "number"
+        },
+        {
+          "name": "MUTAGEN_AUTO_APPROVE_RUB",
+          "description": "Calls up to this sum run without confirmation, RUB",
+          "default": "1",
+          "format": "number"
+        },
+        {
+          "name": "MUTAGEN_FREE_ONLY",
+          "description": "1 refuses every paid call",
+          "default": "0",
+          "choices": ["0", "1"]
+        },
+        {
+          "name": "MUTAGEN_TOOLS",
+          "description": "Tool groups: basic,parser,serp,scenarios,text (default all)",
+          "format": "string"
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,11 @@
+# Фрагмент ~/.codex/config.toml
+[mcp_servers.mutagen]
+command = "npx"
+args = ["-y", "mutagen-ru-mcp"]
+startup_timeout_sec = 30 # первый запуск npx скачивает пакет
+tool_timeout_sec = 120
+# Вместо таблицы env ниже можно передать ключ из окружения: env_vars = ["MUTAGEN_API_KEY"]
+
+[mcp_servers.mutagen.env]
+MUTAGEN_API_KEY = "ваш_ключ"
+MUTAGEN_BUDGET_RUB = "50"

@@ -1,0 +1,58 @@
+name: Новый метод API / New API method
+description: Метод или отчет Мутагена, которого нет в клиенте / A Mutagen API method or report the client lacks
+labels: ["api"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        **Не вставляйте ключ API** и личные данные аккаунта в примеры ответов. **Do not paste your API key** or personal account data.
+  - type: input
+    id: method
+    attributes:
+      label: Метод или отчет / Method or report
+      placeholder: mutagen.serp.report, report_keyword_questions
+    validations:
+      required: true
+  - type: input
+    id: docs
+    attributes:
+      label: Ссылка на документацию / Documentation link
+      placeholder: https://mutagen.ru/?p=api
+    validations:
+      required: true
+  - type: textarea
+    id: params
+    attributes:
+      label: Параметры / Parameters
+      render: json
+    validations:
+      required: true
+  - type: textarea
+    id: response
+    attributes:
+      label: Пример ответа / Response example
+      description: Без ключа и личных данных / Without the key and personal data
+      render: json
+  - type: input
+    id: price
+    attributes:
+      label: Цена / Price
+      description: Сколько списывает Мутаген и нужна ли подписка / What Mutagen charges, whether a subscription is needed
+      placeholder: 0,02 ₽ за фразу / подписка, 1 запрос квоты
+    validations:
+      required: true
+  - type: dropdown
+    id: async
+    attributes:
+      label: Асинхронный? / Asynchronous?
+      description: Ставит задачу, которую потом нужно опрашивать / Creates a task that needs polling
+      options:
+        - Нет / No
+        - Да / Yes
+        - Не знаю / Not sure
+  - type: textarea
+    id: use-case
+    attributes:
+      label: Зачем он нужен / Use case
+    validations:
+      required: true

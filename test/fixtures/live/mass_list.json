@@ -1,0 +1,8 @@
+{
+  "method": "mutagen.parser.mass.list",
+  "params": null,
+  "status": 200,
+  "contentType": "application/json",
+  "body": "{\"465374\":{\"name\":\"mutagen-ru-mcp abcdef0123456789\",\"parser\":\"wordstat_n\",\"region_id\":\"225\",\"count\":\"2\",\"time\":\"1791975277\",\"status\":\"finish\"}}",
+  "note": "запись тестового задания из живого ответа mass.list 14.10.2026"
+}

@@ -1,0 +1,40 @@
+# Раз в неделю собирает семантическое ядро и сохраняет его как артефакт сборки.
+# Скопируйте файл в .github/workflows/ своего репозитория и добавьте секрет MUTAGEN_API_KEY
+# (Settings → Secrets and variables → Actions). Маркеры и бюджет — в env ниже.
+
+name: Weekly semantic core
+
+on:
+  schedule:
+    - cron: "0 5 * * 1" # понедельник, 05:00 UTC
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  core:
+    runs-on: ubuntu-latest
+    timeout-minutes: 45
+    env:
+      MUTAGEN_API_KEY: ${{ secrets.MUTAGEN_API_KEY }}
+      MUTAGEN_BUDGET_RUB: "20" # жесткий предел трат за запуск
+      SEEDS: "натяжные потолки|потолки под ключ"
+    steps:
+      - uses: actions/setup-node@v7
+        with:
+          node-version: 24
+
+      - run: npm install --global mutagen-ru-mcp
+
+      - name: Build the core
+        run: |
+          mkdir -p out
+          IFS='|' read -r -a seeds <<< "$SEEDS"
+          mutagen-ru core "${seeds[@]}" --budget "$MUTAGEN_BUDGET_RUB" --yes -o out/core.xlsx
+          mutagen-ru spending -o out/spending.csv
+
+      - uses: actions/upload-artifact@v7
+        with:
+          name: semantic-core
+          path: out/

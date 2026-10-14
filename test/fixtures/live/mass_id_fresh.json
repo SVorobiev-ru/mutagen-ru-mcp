@@ -1,0 +1,9 @@
+{
+  "method": "mutagen.parser.mass.id",
+  "params": {
+    "mass_id": 465374
+  },
+  "status": 200,
+  "contentType": "application/json",
+  "body": "{\"name\":\"mutagen-ru-mcp abcdef0123456789\",\"time\":\"1791975277\",\"parser\":\"wordstat_n\",\"region_id\":\"225\",\"count\":\"2\",\"status\":\"finish\",\"data\":{\"пластиковые окна\":{\"status\":\"finish\",\"data\":{\"frequency\":1453087}},\"натяжной потолок цена\":{\"status\":\"finish\",\"data\":{\"frequency\":62529}}}}"
+}

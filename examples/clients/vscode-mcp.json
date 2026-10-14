@@ -1,0 +1,21 @@
+{
+  "inputs": [
+    {
+      "type": "promptString",
+      "id": "mutagen-key",
+      "description": "Ключ API Мутагена (https://mutagen.ru/?api_config)",
+      "password": true
+    }
+  ],
+  "servers": {
+    "mutagen": {
+      "type": "stdio",
+      "command": "npx",
+      "args": ["-y", "mutagen-ru-mcp"],
+      "env": {
+        "MUTAGEN_API_KEY": "${input:mutagen-key}",
+        "MUTAGEN_BUDGET_RUB": "50"
+      }
+    }
+  }
+}
